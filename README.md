@@ -30,6 +30,42 @@
 cd backend   # Laravel プロジェクトのディレクトリに移動（構成に合わせて変更）
 composer install
 
+`.env` の主な設定例：
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=sqlite
+DB_DATABASE=database/database.sqlite
+
+SANCTUM_STATEFUL_DOMAINS=localhost:5173,localhost,localhost:8000
+SESSION_DOMAIN=localhost
+
+SQLite を使う場合は、ファイルを作成しておきます。
+
+mkdir -p database
+touch database/database.sqlite
+
+###3-4. 開発サーバ起動
+php artisan serve --host=localhost --port=8000
+
+これで API は `http://localhost:8000` で利用できます。
+
+##4. セットアップ手順（Frontend / React）
+###4-1. 依存関係のインストール
+```bash
+cd frontend   # React プロジェクトのディレクトリに移動（構成に合わせて変更）
+npm install
+
+###4-2. 環境変数（必要であれば）
+`VITE_API_URL` などの環境変数を使う場合は、ルートに `.env` を作成し、例えば次のように設定します。
+
+```env
+VITE_API_URL=http://localhost:8000
+
+###4-3. 開発サーバ起動
+```bash
+npm run dev
+
+
 ## 5. 認証（Sanctum SPA）のポイント
 
 - 認証フロー  
