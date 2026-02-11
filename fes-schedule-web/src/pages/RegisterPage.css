@@ -1,4 +1,4 @@
-.login-container {
+.register-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,17 +8,17 @@
     color: #000000;
 }
 
-.login-form {
+.register-form {
     background: white;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     color: #000000;
 }
 
-.login-form h1 {
+.register-form h1 {
     text-align: center;
     margin-bottom: 30px;
     color: #000000;
@@ -65,10 +65,10 @@
     border: 1px solid #d1d5db;
 }
 
-.login-form button {
+.register-form button {
     width: 100%;
     padding: 12px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1d1d1d 0%, #434343 100%);
     color: white;
     border: none;
     border-radius: 4px;
@@ -78,12 +78,12 @@
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.login-form button:hover:not(:disabled) {
+.register-form button:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.login-form button:disabled {
+.register-form button:disabled {
     opacity: 0.7;
     cursor: not-allowed;
 }

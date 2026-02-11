@@ -6,14 +6,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\ScheduleItem;
+use App\Models\ScheduleAssignment;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
     use HasApiTokens, HasFactory, Notifiable;
 
 
@@ -56,5 +57,10 @@ class User extends Authenticatable
         return $this->belongsToMany(ScheduleItem::class, 'schedule_assignments')
             ->withPivot(['role', 'status'])
             ->withTimestamps();
+    }
+
+    public function scheduleAssignments(): HasMany
+    {
+        return $this->hasMany(ScheduleAssignment::class);
     }
 }

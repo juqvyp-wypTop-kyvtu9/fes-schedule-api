@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../lib/auth";
 import "./LoginPage.css";
 
@@ -60,6 +60,9 @@ export default function LoginPage() {
                         {isLoading ? "ログイン中..." : "ログイン"}
                     </button>
                 </form>
+                <p className="auth-footnote">
+                    新規登録は <Link to="/register">こちら</Link>
+                </p>
             </div>
         </div>
     );

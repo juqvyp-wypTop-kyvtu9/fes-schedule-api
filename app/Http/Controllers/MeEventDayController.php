@@ -22,8 +22,19 @@ class MeEventDayController extends Controller
             ->whereHas('scheduleItems.users', function ($q) use ($user) {
                 $q->whereKey($user->id);
             })
+            ->with('event:id,name')
             ->orderBy('date');
 
-        return $query->get(['id', 'event_id', 'date', 'label']);
+        $eventDays = $query->get(['id', 'event_id', 'date', 'label']);
+
+        return $eventDays->map(function (EventDay $day) {
+            return [
+                'id' => $day->id,
+                'event_id' => $day->event_id,
+                'date' => $day->date->format('Y-m-d'),
+                'label' => $day->label,
+                'event_name' => $day->event->name ?? null,
+            ];
+        });
     }
 }

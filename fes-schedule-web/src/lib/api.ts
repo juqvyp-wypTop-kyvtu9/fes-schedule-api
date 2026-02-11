@@ -1,13 +1,12 @@
 import axios from "axios";
 
+
+
 export const api = axios.create({
     baseURL: "http://localhost:8000",
     withCredentials: true,
-
-    // Laravel(Sanctum) がセットする Cookie 名と、送るべき CSRF ヘッダ名を明示
     xsrfCookieName: "XSRF-TOKEN",
     xsrfHeaderName: "X-XSRF-TOKEN",
-
     headers: {Accept: "application/json"},
 });
 
@@ -19,3 +18,21 @@ api.interceptors.request.use((config) => {
     }
     return config;
 });
+
+// イベント一覧取得
+export async function fetchEvents() {
+    const res = await api.get("/api/events");
+    return res.data;
+}
+
+// イベントIDごとのシフト一覧取得
+export async function fetchShiftsByEvent(eventId: number) {
+    const res = await api.get(`/api/events/${eventId}/shifts`);
+    return res.data;
+}
+
+// イベントIDごとの自分のシフト一覧取得
+export async function fetchMyShiftsByEvent(eventId: number) {
+    const res = await api.get(`/api/events/${eventId}/my-shifts`);
+    return res.data;
+}

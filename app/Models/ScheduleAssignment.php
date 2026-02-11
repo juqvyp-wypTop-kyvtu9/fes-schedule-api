@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+use App\Models\User;
+use App\Models\ScheduleItem;
 
 class ScheduleAssignment extends Model
 {
@@ -16,10 +20,13 @@ class ScheduleAssignment extends Model
         'status',
     ];
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany(User::class, 'schedule_assignments')
-            ->withPivot(['role', 'status'])
-            ->withTimestamps();
+        return $this->belongsTo(User::class);
+    }
+
+    public function scheduleItem()
+    {
+        return $this->belongsTo(ScheduleItem::class);
     }
 }

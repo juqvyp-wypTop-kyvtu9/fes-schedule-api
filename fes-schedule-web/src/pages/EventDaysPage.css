@@ -2,6 +2,8 @@
     max-width: 1000px;
     margin: 0 auto;
     padding: 40px 20px;
+    background: #ffffff;
+    color: #000000;
 }
 
 .event-days-header {
@@ -9,20 +11,20 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid #e5e5e5;
     padding-bottom: 20px;
 }
 
 .event-days-header h1 {
-    color: #ffffff;
+    color: #000000;
     font-size: 32px;
     margin: 0;
 }
 
 .logout-btn {
     padding: 10px 20px;
-    background: #dc3545;
-    color: white;
+    background: #f86363;
+    color: #000000;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -32,7 +34,60 @@
 }
 
 .logout-btn:hover {
-    background: #c82333;
+    background: #ffd8d8;
+}
+
+.event-days-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.event-days-selector {
+    position: relative;
+    max-width: 420px;
+}
+
+.event-days-dropdown {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    background: #f3f4f6;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    color: #000000;
+}
+
+.event-days-dropdown .caret {
+    margin-left: 12px;
+}
+
+.event-days-dropdown-menu {
+    margin-top: 8px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.event-days-dropdown-item {
+    width: 100%;
+    padding: 10px 14px;
+    text-align: left;
+    background: #ffffff;
+    border: none;
+    cursor: pointer;
+    color: #000000;
+}
+
+.event-days-dropdown-item:hover {
+    background: #f3f4f6;
 }
 
 .event-days-list {
@@ -43,7 +98,7 @@
 
 .event-day-item {
     background: white;
-    border: 1px solid #ddd;
+    border: 1px solid #d1d5db;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 15px;
@@ -51,6 +106,7 @@
     align-items: center;
     gap: 20px;
     transition: box-shadow 0.2s;
+    color: #000000;
 }
 
 .event-day-item:hover {
@@ -58,38 +114,122 @@
 }
 
 .event-day-item .date {
-    color: #667eea;
+    color: #000000;
     font-weight: 600;
     min-width: 150px;
     font-size: 16px;
 }
 
 .event-day-item .label {
-    color: #555;
+    color: #000000;
     font-size: 16px;
     flex: 1;
 }
 
+.event-shifts-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 32px;
+    color: #000000;
+}
+
+.event-shifts-panel::before {
+    content: "";
+    position: absolute;
+    left: 11px;
+    top: 10px;
+    bottom: 0;
+    width: 2px;
+    background: #000000;
+    border-radius: 999px;
+}
+
+.event-shift-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.timeline-dot {
+    width: 18px;
+    height: 18px;
+    background: #000000;
+    border-radius: 50%;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+.event-shifts-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.event-shift-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: #000000;
+}
+
+.event-shift-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.event-shift-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    color: #000000;
+    font-size: 14px;
+}
+
+.manual-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 16px;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #1d1d1f;
+    background: #f5f5f5;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 1px solid #eaeaea;
+}
+
+.manual-button:hover {
+    background: #e5e5e5;
+}
 .no-data {
     text-align: center;
     padding: 40px;
-    color: #999;
+    color: #000000;
     font-size: 16px;
 }
 
 .loading {
     text-align: center;
     padding: 40px;
-    color: #666;
+    color: #000000;
     font-size: 16px;
 }
 
 .error {
     text-align: center;
     padding: 20px;
-    background: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #d1d5db;
     border-radius: 4px;
     margin: 20px;
+}
+
+@media (max-width: 768px) {
+    .event-days-content {
+        flex-direction: column;
+    }
 }

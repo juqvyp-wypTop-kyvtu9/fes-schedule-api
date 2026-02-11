@@ -6,8 +6,7 @@ export async function csrf() {
 }
 
 export async function login(email: string, password: string) {
-  //await csrf();// Breeze/Fortifyの通常ログインエンドポイント
-  await api.get("/sanctum/csrf-cookie"); // 最初にCSRF cookieを取得
+  await csrf();
   await api.post("/login", { email, password });
 }
 
@@ -22,4 +21,19 @@ export async function me() {
 export async function fetchMe() {
   const res = await api.get("/api/user");
   return res.data;
+}
+
+export async function register(
+  name: string,
+  email: string,
+  password: string,
+  passwordConfirmation: string
+) {
+  await csrf();
+  await api.post("/register", {
+    name,
+    email,
+    password,
+    password_confirmation: passwordConfirmation,
+  });
 }
