@@ -7,10 +7,56 @@ Fes Schedule App は 大学のサークル活動を円滑にするために開�
 - **フロントエンド**: Vite + React + TypeScript（`fes-schedule-web/src` 配下）。`axios` ラッパーで認証済 API を叩き、イベント日選択＆タイムライン UI を構成しています。
 - **データベース**: MySQL（`database/migrations` にテーブル定義）、ユーザー・イベント・シフト・割当を管理。`events` が複数の `event_days` を持ち、各 `event_day` が複数の `schedule_items` を有し、`schedule_assignments` で `users` と `schedule_items` を結び付ける多対多の割当構造になっています。
 - **開発ツール**: Composer / npm、Laravel Artisan コマンド、（必要に応じて）Laravel Sail 準拠のシードとマイグレーション。
-- **実装予定機能** ユーザーに管理者権限を与えて、シフトを追加・削除できる機能、より見やすいUI設計、
+- **画面構成**
+　- ![ログインのスクリーンショット](docs/assets/login.png)
+　- ![スケジュールビューのスクリーンショット](docs/assets/scedule_view.png)
+　- ![登録のスクリーンショット](docs/assets/register.png)
+
+- **実装予定機能**
+  - ユーザーに管理者権限を与えて、シフトを追加・削除できる機能
+  - より見やすいUI設計
 
 ##DB設計
-
+- **users**
+  - id(PK)
+  - name
+  - email(unique)
+  - password
+  - student_number
+  - created_at
+  - updated_at
+-**events**
+  - id(PK)
+  - name
+  - created_at
+  - updated_at
+-**event_days**
+  - id(PK)
+  - event_id(FK → events.id)
+  - date
+  - label
+  - created_at
+  - updated_at
+-**  schedule_items**
+  - id(PK)
+  - event_day_id (FK → event_days.id)
+  - start_time
+  - end_time
+  - title
+  - description
+  - location
+  - type
+  - manual_url
+  - created_at
+  - updated_at
+-**schedule_assiginments**
+  -id(PK)
+  -user_id (FK → users.id)
+  -schedule_item_id (FK → schedule_items.id)
+  -role
+  -status
+  -created_at
+  -updated_at
 
 ## プロジェクトの試し方
 1. **バックエンド準備（リポジトリルート）**
