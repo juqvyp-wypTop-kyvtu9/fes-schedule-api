@@ -1,12 +1,16 @@
-# Fes Schedule API
+# Fes Schedule App
 
 ## 概要
-Fes Schedule API は Laravel によるサーバーサイドと Vite + React によるフロントエンドを組み合わせ、スタッフが自分の割り当てられたイベント日ごとのシフトをタイムライン表示で確認できるスケジュールビューアーです。
+Fes Schedule App は 大学のサークル活動を円滑にするために開発しました。Laravel によるサーバーサイドと Vite + React によるフロントエンドを組み合わせ、サークルメンバーが自分の割り当てられたイベント日ごとのシフトをタイムライン表示で確認できるスケジュールビューアーです。
 
-- **バックエンド**: Laravel（Sanctum 認証）、`Event` / `EventDay` / `ScheduleItem` / `ScheduleAssignment` モデルと `/api/me/event-days` や `/api/events/{event}/my-shifts` を提供する API コントローラ。
-- **フロントエンド**: Vite + React + TypeScript（`fes-schedule-web/src` 配下）。`axios` ラッパーで認証済 API を叩き、CSS / Tailwind を駆使したイベント日選択＆タイムライン UI を構成。
-- **データベース**: MySQL（`database/migrations` にテーブル定義）、ユーザー・イベント・シフト・割当を管理。`events` が複数の `event_days` を持ち、各 `event_day` が複数の `schedule_items` を有し、`schedule_assignments` で `users` と `schedule_items` を結び付ける多対多の割当構造になっています。テストユーザー `test@example.com` / `password` でログイン・登録ページの動作確認ができます。
+- **バックエンド**: Laravel（Sanctum 認証）、`Event` / `EventDay` / `ScheduleItem` / `ScheduleAssignment` モデルと `/api/me/event-days` や `/api/events/{event}/my-shifts` を提供する API コントローラによって構成されています。
+- **フロントエンド**: Vite + React + TypeScript（`fes-schedule-web/src` 配下）。`axios` ラッパーで認証済 API を叩き、イベント日選択＆タイムライン UI を構成しています。
+- **データベース**: MySQL（`database/migrations` にテーブル定義）、ユーザー・イベント・シフト・割当を管理。`events` が複数の `event_days` を持ち、各 `event_day` が複数の `schedule_items` を有し、`schedule_assignments` で `users` と `schedule_items` を結び付ける多対多の割当構造になっています。
 - **開発ツール**: Composer / npm、Laravel Artisan コマンド、（必要に応じて）Laravel Sail 準拠のシードとマイグレーション。
+- **実装予定機能** ユーザーに管理者権限を与えて、シフトを追加・削除できる機能、より見やすいUI設計、
+
+##DB設計
+
 
 ## プロジェクトの試し方
 1. **バックエンド準備（リポジトリルート）**
@@ -30,8 +34,7 @@ Fes Schedule API は Laravel によるサーバーサイドと Vite + React に�
    - `config/cors.php` の `paths` や `allowed_origins` に `http://localhost:5173` (または Vite の実行ホスト) を含めて、フロントエンドからの資格情報付きリクエストを許可していることを確認。
    - フロントエンド側は `/sanctum/csrf-cookie` を投げた後にログイン/登録を行うため、Laravel サーバーが先に起動している必要があります。
 
-5. **デバッグのヒント**
-   - API リクエストが失敗するときはブラウザのネットワークタブで `XSRF-TOKEN` クッキーと `X-XSRF-TOKEN` ヘッダーを確認。
-   - シフトが表示されない場合は `event_day_id` で絞り込んでいるため、該当イベント日に割り当てられたスケジュールが正しく存在するか `schedule_assignments` テーブルを確認。
+5. **テストユーザー**
+   - テストユーザー `test@example.com` / `password` でログイン・登録ページの動作確認ができます。
 
 両方のサーバーを立ち上げた状態で、React 側の `/login`→`/register`→`/event-days` の流れをたどれば、自分のシフトタイムラインが表示されるはずです。
